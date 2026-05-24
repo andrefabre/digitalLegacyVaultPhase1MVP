@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Digital Legacy Vault — Register</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="POST">
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <label>Role</label>
+    <select name="role">
+        <option value="owner">Owner</option>
+        <option value="executor">Executor</option>
+    </select>
+    <button type="submit">Register</button>
+</form>
+<p>Already have an account? <a href="/login">Login here</a></p>
+{% endblock %}

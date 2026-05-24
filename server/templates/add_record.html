@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Asset Record</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="POST">
+    <label>Title</label>
+    <input type="text" name="title" required>
+    <label>Description</label>
+    <textarea name="description" rows="4"></textarea>
+    <button type="submit">Add Record</button>
+    <a href="/owner" class="btn">Cancel</a>
+</form>
+{% endblock %}

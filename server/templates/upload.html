@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Upload Document</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<p>Allowed file types: PDF, DOCX, JPG, PNG. Maximum size: 10MB.</p>
+<form method="POST" enctype="multipart/form-data">
+    <label>Select File</label>
+    <input type="file" name="file" accept=".pdf,.docx,.jpg,.jpeg,.png" required>
+    <button type="submit">Upload</button>
+    <a href="/owner" class="btn">Cancel</a>
+</form>
+{% endblock %}

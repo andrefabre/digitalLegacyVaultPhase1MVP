@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Legacy Vault</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        nav { margin-bottom: 20px; padding: 10px; background: #f0f0f0; }
+        nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .error { color: red; margin: 10px 0; }
+        .success { color: green; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+        th { background: #f0f0f0; }
+        input, textarea, select { width: 100%; padding: 8px; margin: 5px 0 15px; box-sizing: border-box; }
+        button, .btn { padding: 8px 16px; background: #333; color: white; border: none; cursor: pointer; }
+        .btn-danger { background: #cc0000; }
+        .btn-success { background: #006600; }
+        h1, h2 { border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    {% if session.role %}
+    <nav>
+        <strong>Digital Legacy Vault</strong> |
+        Logged in as: {{ session.email }} ({{ session.role }}) |
+        <a href="/logout">Logout</a>
+    </nav>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

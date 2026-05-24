@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Owner Dashboard</h1>
+
+<h2>Asset Records</h2>
+<a href="/owner/records/add" class="btn">Add Record</a>
+{% if records %}
+<table>
+    <tr><th>Title</th><th>Description</th><th>Created</th><th>Action</th></tr>
+    {% for record in records %}
+    <tr>
+        <td>{{ record['title'] }}</td>
+        <td>{{ record['description'] }}</td>
+        <td>{{ record['created_at'] }}</td>
+        <td>
+            <form method="POST" action="/owner/records/delete/{{ record['id'] }}">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No asset records yet.</p>
+{% endif %}
+
+<h2>Document Uploads</h2>
+<a href="/owner/upload" class="btn">Upload Document</a>
+{% if uploads %}
+<table>
+    <tr><th>Filename</th><th>Size</th><th>Uploaded</th></tr>
+    {% for upload in uploads %}
+    <tr>
+        <td>{{ upload['original_filename'] }}</td>
+        <td>{{ upload['file_size'] }} bytes</td>
+        <td>{{ upload['uploaded_at'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No documents uploaded yet.</p>
+{% endif %}
+
+<h2>Executor Nominations</h2>
+<a href="/owner/nominate" class="btn">Nominate Executor</a>
+{% if nominations %}
+<table>
+    <tr><th>Executor Email</th><th>Status</th><th>Nominated</th></tr>
+    {% for nomination in nominations %}
+    <tr>
+        <td>{{ nomination['executor_email'] }}</td>
+        <td>{{ nomination['status'] }}</td>
+        <td>{{ nomination['nominated_at'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No executor nominated yet.</p>
+{% endif %}
+{% endblock %}

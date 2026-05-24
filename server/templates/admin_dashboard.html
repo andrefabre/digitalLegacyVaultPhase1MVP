@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<h2>Executor Nominations</h2>
+{% if nominations %}
+<table>
+    <tr><th>ID</th><th>Owner ID</th><th>Executor ID</th><th>Status</th><th>Nominated</th><th>Actions</th></tr>
+    {% for nomination in nominations %}
+    <tr>
+        <td>{{ nomination['id'] }}</td>
+        <td>{{ nomination['owner_id'] }}</td>
+        <td>{{ nomination['executor_id'] }}</td>
+        <td>{{ nomination['status'] }}</td>
+        <td>{{ nomination['nominated_at'] }}</td>
+        <td>
+            {% if nomination['status'] == 'pending' %}
+            <form method="POST" action="/admin/nominations/{{ nomination['id'] }}/approve" style="display:inline">
+                <button class="btn btn-success" type="submit">Approve</button>
+            </form>
+            <form method="POST" action="/admin/nominations/{{ nomination['id'] }}/deny" style="display:inline">
+                <button class="btn btn-danger" type="submit">Deny</button>
+            </form>
+            {% else %}
+            {{ nomination['status'] }}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No nominations yet.</p>
+{% endif %}
+
+<h2>All Users</h2>
+{% if users %}
+<table>
+    <tr><th>ID</th><th>Email</th><th>Role</th><th>Created</th></tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user['id'] }}</td>
+        <td>{{ user['email'] }}</td>
+        <td>{{ user['role'] }}</td>
+        <td>{{ user['created_at'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No users yet.</p>
+{% endif %}
+
+<h2>Document Uploads</h2>
+{% if uploads %}
+<table>
+    <tr><th>Owner ID</th><th>Original Filename</th><th>Size</th><th>Uploaded</th></tr>
+    {% for upload in uploads %}
+    <tr>
+        <td>{{ upload['owner_id'] }}</td>
+        <td>{{ upload['original_filename'] }}</td>
+        <td>{{ upload['file_size'] }} bytes</td>
+        <td>{{ upload['uploaded_at'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No uploads yet.</p>
+{% endif %}
+
+<h2>Audit Log (Last 50 events)</h2>
+{% if audit %}
+<table>
+    <tr><th>User ID</th><th>Action</th><th>Detail</th><th>IP</th><th>Timestamp</th></tr>
+    {% for entry in audit %}
+    <tr>
+        <td>{{ entry['user_id'] }}</td>
+        <td>{{ entry['action'] }}</td>
+        <td>{{ entry['detail'] }}</td>
+        <td>{{ entry['ip_address'] }}</td>
+        <td>{{ entry['timestamp'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No audit events yet.</p>
+{% endif %}
+{% endblock %}

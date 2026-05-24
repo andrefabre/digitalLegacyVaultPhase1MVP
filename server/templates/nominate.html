@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Nominate Executor</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<p>Enter the email address of a registered executor to nominate them.</p>
+<form method="POST">
+    <label>Executor Email</label>
+    <input type="email" name="executor_email" required>
+    <button type="submit">Nominate</button>
+    <a href="/owner" class="btn">Cancel</a>
+</form>
+{% endblock %}
