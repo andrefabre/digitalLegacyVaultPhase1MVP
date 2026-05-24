@@ -4,11 +4,19 @@
 
 Use short-lived branches aligned to deliverable chunks.
 
-1. `refactor/spec-plan-tasks`
-2. `refactor/infrastructure-scripts`
-3. `phase2/dns-tls`
-4. `phase2/backup-integrity`
-5. `phase2/app-workflows`
+Work in this order, one branch per task cluster:
+
+1. `refactor/tasks-cleanup` — this rewrite
+2. `fix/security-ufw-ssh` — UFW SSH rule fix
+3. `refactor/split-harden-server-script` — split harden server script
+4. `phase2/dns-tls` — DNS script split, DNS verification, TLS setup, backup script
+5. `phase3/flask-setup` — server preparation, project structure, database
+6. `phase3/owner-workflow` — account, records, uploads
+7. `phase3/admin-executor-workflow` — admin and executor paths
+8. `phase3/testing` — test plan and test evidence
+9. `phase4/operations` — verification script and security review
+10. `phase5/reproducibility` — documentation and full rebuild test
+11. `phase6/final-package` — evidence, video, submission
 
 ## 2. Commit Rules
 

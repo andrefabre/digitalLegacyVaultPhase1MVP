@@ -114,48 +114,48 @@ See PowerPoint deck in `docs/`.
 
 ### 2.1 DNS script setup
 
-- [ ] Split `4-setup-dns-tls.sh` into `2-setup-dns.sh` and `6-setup-tls.sh`
+- [x] Split `4-setup-dns-tls.sh` into `2-setup-dns.sh` and `6-setup-tls.sh`
   - Acceptance criteria: DNS verification and TLS configuration are separate scripts in correct layer folders
   - `2-setup-dns.sh` — `scripts/iaas/`
   - `6-setup-tls.sh` — `scripts/server/`
 
 ### 2.2 DNS verification
 
-- [ ] Run `scripts/iaas/2-setup-dns.sh` and confirm domain resolves to Azure static public IP
+- [x] Run `scripts/iaas/2-setup-dns.sh` and confirm domain resolves to Azure static public IP
   - Acceptance criteria: `nslookup mydigitallegacyvault.com.au` returns `20.5.125.82`
-- [ ] Capture DNS evidence — CLI output and GoDaddy portal screenshot
+- [x] Capture DNS evidence — CLI output and GoDaddy portal screenshot
   - Evidence: `docs/evidence/phase-2/`
 
 ### 2.3 TLS setup
 
-- [ ] Run `scripts/server/6-setup-tls.sh` with `DOMAIN` and `ADMIN_EMAIL` set
+- [x] Run `scripts/server/6-setup-tls.sh` with `DOMAIN` and `ADMIN_EMAIL` set
   - Acceptance criteria: Certbot issues certificate, Nginx serves HTTPS, HTTP redirects to HTTPS
-- [ ] Verify HTTPS in browser — Edge, Chrome, Firefox
+- [x] Verify HTTPS in browser — Edge, Chrome, Firefox
   - Acceptance criteria: padlock visible, no certificate warnings
-- [ ] Verify HTTPS from CLI — `curl -I https://mydigitallegacyvault.com.au` returns `200`
-- [ ] Capture TLS evidence — CLI output, browser screenshots, certificate details
+- [x] Verify HTTPS from CLI — `curl -I https://mydigitallegacyvault.com.au` returns `200`
+- [x] Capture TLS evidence — CLI output, browser screenshots, certificate details
   - Evidence: `docs/evidence/phase-2/02_https.md`
 
 ### 2.4 Backup script setup
 
-- [ ] Rewrite `5-backup-integrity.sh` as `7-backup-integrity.sh` in `scripts/operations/`
+- [x] Rewrite `5-backup-integrity.sh` as `7-backup-integrity.sh` in `scripts/operations/`
   - Acceptance criteria: script correctly targets all backup paths defined in PLAN.md
-- [ ] Run `scripts/operations/7-backup-integrity.sh` on VM
+- [x] Run `scripts/operations/7-backup-integrity.sh` on VM
   - Acceptance criteria: archive, checksum, and report files generated in `/opt/dlv_mvp/backups`
-- [ ] Verify checksum validation passes
+- [x] Verify checksum validation passes
   - Acceptance criteria: `sha256sum -c` returns OK for generated archive
-- [ ] Enable cron schedule for daily backup
+- [x] Enable cron schedule for daily backup
   - Acceptance criteria: cron entry installed and confirmed
-- [ ] Capture backup evidence — CLI output showing archive, checksum, and report paths
+- [x] Capture backup evidence — CLI output showing archive, checksum, and report paths
   - Evidence: `docs/evidence/phase-2/`
 
 ### 2.5 Verify script and run order finalisation
 
-- [ ] Update `scripts/operations/8-verify-server.sh` — add package verification, backup report check, full output formatted for assessor review
+- [x] Update `scripts/operations/8-verify-server.sh` — add package verification, backup report check, full output formatted for assessor review
   - Acceptance criteria: single script run produces formatted output confirming all rubric criteria are met
-- [ ] Update `scripts/INFRASTRUCTURE-SETUP.md` — reflect new eight-script run order after restructure
+- [x] Update `scripts/INFRASTRUCTURE-SETUP.md` — reflect new eight-script run order after restructure
   - Acceptance criteria: document lists all eight scripts in correct run order with prerequisites for each
-- [ ] Confirm final script run order:
+- [x] Confirm final script run order:
   - `1-provision-vm.sh`
   - `2-setup-dns.sh`
   - `3-install-packages.sh`
@@ -167,11 +167,11 @@ See PowerPoint deck in `docs/`.
 
 ### 2.6 Phase 2 gate
 
-- [ ] DNS resolves correctly
-- [ ] HTTPS valid and reachable without certificate warnings
-- [ ] Backup script produces timestamped verifiable report
-- [ ] Evidence captured and committed
-- [ ] Commit and tag phase milestone
+- [x] DNS resolves correctly
+- [x] HTTPS valid and reachable without certificate warnings
+- [x] Backup script produces timestamped verifiable report
+- [x] Evidence captured and committed
+- [x] Commit and tag phase milestone
 
 ---
 
