@@ -179,82 +179,84 @@ See PowerPoint deck in `docs/`.
 
 ### 3.1 Server preparation
 
-- [ ] Create application directory structure on VM
+- [x] Create application directory structure on VM
   - `sudo mkdir -p /opt/dlv_mvp/uploads`
   - `sudo mkdir -p /opt/dlv_mvp/app`
   - `sudo mkdir -p /opt/dlv_mvp/backups`
+  - `sudo chown -R azureuser:azureuser /opt/dlv_mvp`
+  - `sudo chmod -R 755 /opt/dlv_mvp`
   - Acceptance criteria: all directories exist on VM with correct permissions
 
 ### 3.2 Project setup
 
-- [ ] Create Flask app structure in `server/`
+- [x] Create Flask app structure in `server/`
   - `server/app.py` — main application file
   - `server/requirements.txt` — pip dependencies
   - `server/templates/` — HTML templates
   - `server/static/` — static assets
-- [ ] Create virtual environment at `/opt/dlv_mvp/.venv`
-- [ ] Install dependencies — `pip install -r server/requirements.txt`
+- [x] Create virtual environment at `/opt/dlv_mvp/.venv`
+- [x] Install dependencies — `pip install -r server/requirements.txt`
   - Dependencies: `flask`, `python-magic`
-- [ ] Verify Flask app runs locally — `python server/app.py`
+- [x] Verify Flask app runs locally — `python server/app.py`
   - Acceptance criteria: `http://127.0.0.1:5000` returns 200
 
 ### 3.3 Database setup
 
-- [ ] Create SQLite database at `/opt/dlv_mvp/app/dlv_mvp.db`
-- [ ] Define schema — users, asset records, audit log tables
-- [ ] Verify database connection from Flask app
+- [x] Create SQLite database at `/opt/dlv_mvp/app/dlv_mvp.db`
+- [x] Define schema — users, asset records, audit log tables
+- [x] Verify database connection from Flask app
   - Acceptance criteria: app starts without database errors
 
 ### 3.4 Owner workflow
 
-- [ ] Implement account creation — registration form and server-side validation
+- [x] Implement account creation — registration form and server-side validation
   - Acceptance criteria: owner can create account, credentials stored securely
-- [ ] Implement asset record creation — form, validation, database write
+- [x] Implement asset record creation — form, validation, database write
   - Acceptance criteria: owner can create, read, update, delete own records
-- [ ] Implement document upload with security controls
+- [x] Implement document upload with security controls
   - Allowlist file types verified by python-magic
   - File size limit enforced server side
   - UUID rename on storage
   - Store uploads outside web root
   - Acceptance criteria: PDF and DOCX accepted, all other types rejected, 
     files not accessible via direct URL, stored with UUID filename
-- [ ] Implement executor nomination — owner selects executor from registered users
+- [x] Implement executor nomination — owner selects executor from registered users
   - Acceptance criteria: executor nomination stored, vault becomes active
 
 ### 3.5 Admin workflow
 
-- [ ] Implement admin authentication and session management
+- [x] Implement admin authentication and session management
   - Acceptance criteria: admin login works, session persists, logout clears session
-- [ ] Implement admin review page — view submissions and uploaded document metadata
+- [x] Implement admin review page — view submissions and uploaded document metadata
   - Acceptance criteria: admin can view all owner submissions
-- [ ] Implement manual probate verification and release approval
+- [x] Implement manual probate verification and release approval
   - Acceptance criteria: admin can approve executor release, status updates in database
-- [ ] Implement audit logging — submission, upload, login, and status change events
+- [x] Implement audit logging — submission, upload, login, and status change events
   - Acceptance criteria: audit events written to log for all critical actions listed in SPEC.md
 
 ### 3.6 Executor workflow
 
-- [ ] Implement executor account creation
+- [x] Implement executor account creation
   - Acceptance criteria: executor can register and log in
-- [ ] Implement executor read-only access — view owner asset records after admin approval
+- [x] Implement executor read-only access — view owner asset records after admin approval
   - Acceptance criteria: executor can only read, cannot create, update, or delete
-- [ ] Implement access condition — executor cannot view records until admin approves
+- [x] Implement access condition — executor cannot view records until admin approves
   - Acceptance criteria: executor sees restricted message before approval, records after
 
 ### 3.7 Testing
 
-- [ ] Write test plan in `docs/testing/` — document what is being tested and expected outcomes for each workflow
-- [ ] Test owner workflow end to end — account creation, asset record, upload, executor nomination
-- [ ] Test admin workflow end to end — login, review, probate verification, release approval
-- [ ] Test executor workflow end to end — login, access denied before approval, access granted after
+- [x] Write test plan in `docs/testing/` — document what is being tested and expected outcomes for each workflow
+- [x] Test owner workflow end to end — account creation, asset record, upload, executor nomination
+- [x] Test admin workflow end to end — login, review, probate verification, release approval
+- [x] Test executor workflow end to end — login, access denied before approval, access granted after
 - [ ] Test upload security controls — verify rejected file types, size limits, and UUID rename
-- [ ] Capture test evidence — screenshots for each test scenario
+- [x] Capture test evidence — screenshots for each test scenario
   - Evidence: `docs/evidence/phase-3/`
 
 ### 3.8 Phase 3 gate
 
-- [ ] End-to-end workflow demonstrated — owner account creation to simulated executor release
-- [ ] All three roles verified against access levels in SPEC.md
+- [x] End-to-end workflow demonstrated — owner account creation to simulated executor release
+- [x] All three roles verified against access levels in SPEC.md
 - [ ] Upload security controls verified
 - [ ] Test plan complete and evidence captured
 - [ ] Commit history shows iterative development
