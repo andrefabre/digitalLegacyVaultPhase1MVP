@@ -93,5 +93,5 @@ echo ""
 echo "============================================================================= "
 echo "Applications Layer"
 echo ""
-echo "TO BE ADDED"
-echo "Verification run complete."
+curl -I https://mydigitallegacyvault.com.au/login
+echo "Flask app accessible at https://mydigitallegacyvault.com.au/login"

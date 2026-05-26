@@ -3,8 +3,6 @@
 This guide walks through the full deployment of the ICT171 Cloud Server Project
 and Digital Legacy Vault Phase 1 MVP from scratch.
 
-Read SPEC.md, PLAN.md, and TASKS.md before following this guide.
-
 ---
 
 ## Prerequisites
@@ -18,6 +16,10 @@ Before starting, confirm the following are in place:
 5. DNS A record configured in GoDaddy pointing domain to the Azure public IP
 6. GitHub account with access to the repository
 
+**Note:**
+The VM public IP is generated when you run `1-provision-vm.sh`
+Replace `<VM_PUBLIC_IP>` throughout this guide with the IP shown in the
+provisioning output.
 ---
 
 ## Step 1 — Provision Azure VM (local machine)
@@ -37,21 +39,32 @@ SUBSCRIPTION_ID=<your-subscription-id> ./scripts/iaas/1-provision-vm.sh
 
 Expected output:
 
-```
+```text
 Provisioning complete.
-VM public IP: 20.5.125.82
-SSH command: ssh azureuser@20.5.125.82
+VM public IP: <VM_PUBLIC_IP>
+SSH command: ssh azureuser@<VM_PUBLIC_IP>
 ```
 
 ---
+
+
+Az Login
+Select Account -> Click continue
+
 
 ## Step 2 — SSH to VM
 
 ```bash
-ssh azureuser@20.5.125.82
+ssh azureuser@<VM_PUBLIC_IP>
 ```
 
+**Note:** If rebuilding after a previous deployment, remove the old SSH 
+known hosts entry first:
+`ssh-keygen -R <OLD_VM_PUBLIC_IP>`
+
 ---
+
+
 
 ## Step 3 — Install Git and Clone Repository
 
@@ -74,18 +87,34 @@ chmod +x scripts/operations/*.sh
 
 ---
 
-## Step 5 — Verify DNS
+## Step 5 — Configure DNS
 
-Confirm the domain resolves to the VM public IP:
+### 5.1 Update GoDaddy A Record
+
+1. Log in to GoDaddy
+2. Go to DNS Management for `mydigitallegacyvault.com.au`
+3. Find the A record and update the value to `<VM_PUBLIC_IP>`
+4. Save the change
+5. Wait for DNS propagation — up to 10 minutes
+
+To check propagation from the terminal:
 
 ```bash
-EXPECTED_PUBLIC_IP=20.5.125.82 ./scripts/iaas/2-setup-dns.sh
+nslookup mydigitallegacyvault.com.au
+```
+
+Wait until it returns `<VM_PUBLIC_IP>` before proceeding to Step 5.2.
+
+### 5.2 Verify DNS
+
+```bash
+EXPECTED_PUBLIC_IP=<VM_PUBLIC_IP> ./scripts/iaas/2-setup-dns.sh
 ```
 
 Expected output:
 
-```
-Domain resolves to: 20.5.125.82
+```text
+Domain resolves to: <VM_PUBLIC_IP>
 DNS verification complete for domain: mydigitallegacyvault.com.au.
 ```
 
@@ -120,7 +149,7 @@ curl -s https://api.ipify.org
 
 Expected output:
 
-```
+```text
 Hardening complete.
 ```
 
@@ -134,7 +163,7 @@ Hardening complete.
 
 Expected output:
 
-```
+```text
 Nginx deploy complete.
 ```
 
@@ -179,7 +208,7 @@ Replace `your-email@example.com` with your real email address:
 ```bash
 DOMAIN=mydigitallegacyvault.com.au \
 ADMIN_EMAIL=your-email@example.com \
-EXPECTED_PUBLIC_IP=20.5.125.82 \
+EXPECTED_PUBLIC_IP=<VM_PUBLIC_IP> \
 ./scripts/server/6-setup-tls.sh
 ```
 
@@ -246,7 +275,7 @@ crontab -l
 ## Step 14 — Verify Full Server Setup
 
 ```bash
-VM_PUBLIC_IP=20.5.125.82 ./scripts/operations/8-verify-server.sh
+VM_PUBLIC_IP=<VM_PUBLIC_IP> ./scripts/operations/8-verify-server.sh
 ```
 
 Review the output and confirm all checks pass before proceeding.
@@ -301,3 +330,8 @@ ls -la /opt/dlv_mvp/backups/
 - Must show: `server_name mydigitallegacyvault.com.au;`
 - Fix: `sudo sed -i 's/server_name _;/server_name mydigitallegacyvault.com.au;/' /etc/nginx/sites-available/dlv`
 - Then rerun: `sudo certbot install --cert-name mydigitallegacyvault.com.au`
+
+**Nginx config template not found:**
+- The deploy script looks for the config at `scripts/server/configs/nginx.conf`
+- If you see this error, check the `NGINX_CONF_SOURCE` variable in `5-deploy-nginx.sh` 
+  points to the correct path
