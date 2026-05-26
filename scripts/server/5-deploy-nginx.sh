@@ -12,7 +12,7 @@ APP_SRC_DIR="${APP_SRC_DIR:-$(pwd)/public}"
 WEB_ROOT="${WEB_ROOT:-/var/www/dlv}"
 SERVER_NAME="${SERVER_NAME:-_}"
 SITE_NAME="${SITE_NAME:-dlv}"
-NGINX_CONF_SOURCE="${NGINX_CONF_SOURCE:-$(pwd)/infrastructure/configs/nginx.conf}"
+NGINX_CONF_SOURCE="${NGINX_CONF_SOURCE:-$(pwd)/scripts/server/configs/nginx.conf}"
 
 if [[ ! -d "${APP_SRC_DIR}" ]]; then
     echo "ERROR: APP_SRC_DIR does not exist: ${APP_SRC_DIR}"
