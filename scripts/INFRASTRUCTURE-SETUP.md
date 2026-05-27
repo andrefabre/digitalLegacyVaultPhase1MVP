@@ -16,10 +16,9 @@ Before starting, confirm the following are in place:
 5. DNS A record configured in GoDaddy pointing domain to the Azure public IP
 6. GitHub account with access to the repository
 
-**Note:**
-The VM public IP is generated when you run `1-provision-vm.sh`
-Replace `<VM_PUBLIC_IP>` throughout this guide with the IP shown in the
-provisioning output.
+**Note:** The VM public IP is generated when you run `1-provision-vm.sh`.
+Replace `<VM_PUBLIC_IP>` throughout this guide with the IP shown in the provisioning output.
+
 ---
 
 ## Step 1 — Provision Azure VM (local machine)
@@ -47,12 +46,9 @@ SSH command: ssh azureuser@<VM_PUBLIC_IP>
 
 ---
 
-
-Az Login
-Select Account -> Click continue
-
-
 ## Step 2 — SSH to VM
+
+- Login to Azure CLI
 
 ```bash
 ssh azureuser@<VM_PUBLIC_IP>
@@ -64,12 +60,10 @@ known hosts entry first:
 
 ---
 
-
-
 ## Step 3 — Install Git and Clone Repository
 
 ```bash
-sudo apt update && sudo apt install -y git
+sudo apt update && sudo apt upgrade -y && sudo apt install -y git
 cd ~
 git clone https://github.com/andrefabre/digitalLegacyVaultPhase1MVP.git
 cd digitalLegacyVaultPhase1MVP

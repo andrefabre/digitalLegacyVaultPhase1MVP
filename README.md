@@ -17,6 +17,8 @@ Read these files in order:
 2. [PLAN.md](PLAN.md) — architecture and technical decisions
 3. [TASKS.md](TASKS.md) — implementation sequence
 
+**Follow the [INFRASTRUCTURE_SETUP](INFRASTRUCTURE_SETUP.md) instructions to deploy this project yourself**
+
 ## Current Delivery Status
 
 1. Phase 1: Foundation [Complete]
@@ -24,31 +26,31 @@ Read these files in order:
    - [x] Host Hardening — Package install, UFW port rules, Enable Nginx and fail2ban, Disable SSH root login
    - [x] Landing page and compliance content — Deploy static stie to `/var/www/dlv`
    - [x] Evidence package — `/docs/evidence/phase-1`
-2. Phase 2: DNS, HTTPS and TLS
-   - [ ] DNS script setup — develop `scripts/iaas/2-setup-dns.sh`
-   - [ ] DNS verification — confirm domain resolves to Azure static public IP `scripts/iaas/2-setup-dns.sh`
-   - [ ] TLS setup — Certbot issues certificate, Nginx serves HTTPS, HTTP redirects to HTTPS `scripts/server/6-setup-tls.sh`
-   - [ ] Backup script setup — develoep `7-backup-integrity.sh`
-   - [ ] Backup files —  archive, checksum, and report files generated in `/opt/dlv_mvp/backups`
-   - [ ] `8-verify-server.sh` script to validate IaaS and Server config and deployment
-   - [ ] `INFRASTRUCTURE.md` — Document script run order with prerequisites
-   - [ ] Evidence package — CLI output, browser screenshots, certificate details `/docs/evidence/phase-2`
-3. Phase 3: Flask Application Build
-   - [ ] Server preparation
-   - [ ] Project setup
-   - [ ] Database setup
-   - [ ] Owner workflow
-   - [ ] Admin workflow
-   - [ ] Executor workflow
-   - [ ] Testing
-   - [ ] Evidence package — `/docs/evidence/phase-3`
-4. Phase 4: Operations and Security Review
-   - [ ] Verification script
-   - [ ] Security review pass
+2. Phase 2: DNS, HTTPS and TLS [Complete]
+   - [x] DNS script setup — develop `scripts/iaas/2-setup-dns.sh`
+   - [x] DNS verification — confirm domain resolves to Azure static public IP `scripts/iaas/2-setup-dns.sh`
+   - [x] TLS setup — Certbot issues certificate, Nginx serves HTTPS, HTTP redirects to HTTPS `scripts/server/6-setup-tls.sh`
+   - [x] Backup script setup — develoep `7-backup-integrity.sh`
+   - [x] Backup files —  archive, checksum, and report files generated in `/opt/dlv_mvp/backups`
+   - [x] `scripts/operations/8-verify-server.sh` script to validate IaaS and Server config and deployment
+   - [x] `INFRASTRUCTURE.md` — Document script run order with prerequisites
+   - [x] Evidence package — CLI output, browser screenshots, certificate details `/docs/evidence/phase-2`
+3. Phase 3: Flask Application Build [Complete]
+   - [x] Server preparation
+   - [x] Project setup
+   - [x] Database setup
+   - [x] Owner workflow
+   - [x] Admin workflow
+   - [x] Executor workflow
+   - [x] Testing
+   - [x] Evidence package — `/docs/evidence/phase-3`
+4. Phase 4: Operations and Security Review [Complete]
+   - [x] Verification script
+   - [x] Security review pass
    - [ ] Evidence package — `/docs/evidence/phase-4`
 5. Phase 5: Reproducibility Test
    - [ ] Documentation preparation
-   - [ ] Full rebuild test
+   - [x] Full rebuild test
    - [ ] Evidence package — `/docs/evidence/phase-5`
 6. Phase 6: Final Packaging and Submission
    - [ ] Evidence finalisation
@@ -94,20 +96,20 @@ Application scripts:
 
 IaaS scripts:
 
-1. `/scripts/1-provision-vm.sh`
-2. `/scripts/2-setup-dns.sh`
+1. `/scripts/iaas/1-provision-vm.sh`
+2. `/scripts/iaas/2-setup-dns.sh`
 
 Operations scripts:
 
-1. `/scripts/7-backup-integrity.sh`
-2. `/scripts/8-verify-server.sh`
+1. `/scripts/operations/7-backup-integrity.sh`
+2. `/scripts/operations/8-verify-server.sh`
 
 Server scripts:
 
-1. `/scripts/3-install-packages.sh`
-2. `/scripts/4-harden-server.sh`
-3. `/scripts/5-deploy-nginx.sh`
-4. `/scripts/6-setup-tls.sh`
+1. `/scripts/server/3-install-packages.sh`
+2. `/scripts/server/4-harden-server.sh`
+3. `/scripts/server/5-deploy-nginx.sh`
+4. `/scripts/server/6-setup-tls.sh`
 
 ## Local App Development
 
