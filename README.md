@@ -47,15 +47,15 @@ Read these files in order:
 4. Phase 4: Operations and Security Review [Complete]
    - [x] Verification script
    - [x] Security review pass
-   - [ ] Evidence package — `/docs/evidence/phase-4`
+   - [x] Evidence package — `/docs/evidence/phase-4`
 5. Phase 5: Reproducibility Test
-   - [ ] Documentation preparation
+   - [x] Documentation preparation
    - [x] Full rebuild test
-   - [ ] Evidence package — `/docs/evidence/phase-5`
+   - [x] Evidence package — `/docs/evidence/phase-5`
 6. Phase 6: Final Packaging and Submission
-   - [ ] Evidence finalisation
-   - [ ] Video explainer
-   - [ ] Final verification gate
+   - [x] Evidence finalisation
+   - [x] Video explainer
+   - [x] Final verification gate
    - [ ] Evidence package — `/docs/evidence/phase-6`
 
 ## Repository Structure
